@@ -1,0 +1,93 @@
+/* Colour — sampled directly from the Trikuta logo (assets/trikuta-logo.png).
+   Two families do all the work: a deep summit navy and a metallic gold.
+   Everything else is a neutral or a functional status colour. */
+:root {
+  /* Summit navy — wordmark, mountain mass, silhouetted figures */
+  --navy-900: #000c24;
+  --navy-800: #001233;
+  --navy-700: #001848; /* core — sampled from the wordmark */
+  --navy-600: #0a2a66;
+  --navy-500: #143d8a;
+  --navy-400: #3f61a6;
+  --navy-300: #7e93bc;
+  --navy-200: #b9c5dc;
+  --navy-100: #dee5f0;
+  --navy-50:  #eff3f9;
+
+  /* Trikuta gold — hex frame, sunburst, "ADVENTURES & SPORTS", divider marks */
+  --gold-700: #8a5e08; /* gradient shadow */
+  --gold-600: #a87000;
+  --gold-500: #c68a1a; /* core */
+  --gold-400: #ebb130; /* gradient highlight */
+  --gold-300: #f2cb74;
+  --gold-200: #f7e0ae;
+  --gold-100: #fbf1da;
+
+  /* The metallic sweep itself — frames, rules, the divider marks under the wordmark */
+  --gold-metallic: linear-gradient(135deg, #8a5e08 0%, #ebb130 38%, #c68a1a 62%, #8a5e08 100%); /* @kind color */
+  --gold-metallic-flat: linear-gradient(90deg, #8a5e08 0%, #ebb130 50%, #8a5e08 100%); /* @kind color */
+
+  /* Neutrals — cool-leaning, so they sit under navy without going muddy */
+  --stone-900: #14171c;
+  --stone-800: #23272f;
+  --stone-700: #3a404a;
+  --stone-600: #565d69;
+  --stone-500: #737b87;
+  --stone-400: #979ea8;
+  --stone-300: #c2c7ce;
+  --stone-200: #dfe2e7;
+  --stone-100: #eef0f3;
+  --stone-50:  #f7f8fa;
+  --white: #ffffff;
+
+  /* Status — cool functional hues kept clearly distinct from brand gold */
+  --success-600: #1c7a4a;
+  --success-100: #dff2e7;
+  --warning-600: #a4610b;
+  --warning-100: #fbead2;
+  --danger-600: #b3261e;
+  --danger-100: #fbe1df;
+  --info-600: var(--navy-500);
+  --info-100: var(--navy-100);
+
+  /* ---- Semantic aliases ---- */
+  --surface-page: var(--white);
+  --surface-subtle: var(--stone-50);
+  --surface-sunken: var(--stone-100);
+  --surface-card: var(--white);
+  --surface-deep: var(--navy-700);
+  --surface-deep-alt: var(--navy-800);
+  --surface-gold: var(--gold-100);
+  --surface-scrim: rgba(0, 18, 51, 0.62);
+  --surface-frost: rgba(255, 255, 255, 0.14);
+
+  --text-primary: var(--navy-700);
+  --text-body: var(--stone-700);
+  --text-secondary: var(--stone-600);
+  --text-muted: var(--stone-500);
+  --text-inverse: var(--white);
+  --text-on-deep: rgba(255, 255, 255, 0.82);
+  --text-accent: var(--gold-700);
+  --text-accent-on-deep: var(--gold-400);
+
+  --border-subtle: var(--stone-200);
+  --border-strong: var(--stone-300);
+  --border-deep: rgba(255, 255, 255, 0.18);
+  --border-gold: var(--gold-500);
+
+  --action-primary-bg: var(--navy-700);
+  --action-primary-bg-hover: var(--navy-600);
+  --action-primary-fg: var(--white);
+  --action-gold-bg: var(--gold-500);
+  --action-gold-bg-hover: var(--gold-600);
+  --action-gold-fg: var(--navy-900);
+  --action-outline-fg: var(--navy-700);
+  --action-outline-border: var(--navy-700);
+  --action-outline-bg-hover: var(--navy-50);
+  --action-ghost-fg: var(--navy-700);
+  --action-ghost-bg-hover: var(--stone-100);
+  --action-on-deep-border: rgba(255, 255, 255, 0.4);
+  --action-on-deep-bg-hover: rgba(255, 255, 255, 0.1);
+
+  --focus-ring: var(--gold-400);
+}

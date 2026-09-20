@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./ds-base.js"></script>
+<style>
+@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+:root:root{
+--font-display:'Nohemi',Helvetica,Arial,sans-serif;
+--trikuta-navy:#001848;
+--trikuta-navy-deep:#000c24;
+--trikuta-gold:#c68a1a;
+--trikuta-gold-hi:#ebb130;
+--glass-bg:rgba(255,255,255,0.66);
+--glass-border:rgba(255,255,255,0.48);
+--glass-blur:22px;
+--glass-sat:140%;
+--glass-shadow:0 6px 26px -16px rgba(0,18,51,0.22);
+--header-radius:26px;
+--header-height:78px;
+--logo-size:58px;
+--header-offset:28px;
+--header-max:1360px;
+--nav-ease:cubic-bezier(0.16,1,0.3,1);
+}
+body{margin:0}
+a{color:#001848;text-decoration:none;border-bottom:0}
+a:hover{color:#c68a1a}
+.tk-glass{background:rgba(255,255,255,0.66);box-shadow:0 6px 26px -16px rgba(0,18,51,0.22);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%)}
+.tk-bar{min-height:78px}
+.tk-logo{height:58px;width:58px}
+.tk-nav{padding-top:28px}
+html.tk-scrolled .tk-nav{padding-top:18px}
+html.tk-scrolled .tk-glass{background:rgba(255,255,255,0.9);box-shadow:0 10px 34px -14px rgba(0,18,51,0.34),0 2px 8px -4px rgba(0,18,51,0.18);backdrop-filter:blur(28px) saturate(150%);-webkit-backdrop-filter:blur(28px) saturate(150%)}
+html.tk-scrolled .tk-bar{min-height:66px}
+html.tk-scrolled .tk-logo{height:50px;width:50px}
+.tk-nav{--_t:340ms;transition:padding var(--_t) var(--nav-ease)}
+.tk-nav .tk-glass,.tk-nav .tk-bar,.tk-nav .tk-logo{transition:background var(--_t) var(--nav-ease),box-shadow var(--_t) var(--nav-ease),min-height var(--_t) var(--nav-ease),height var(--_t) var(--nav-ease),width var(--_t) var(--nav-ease),backdrop-filter var(--_t) var(--nav-ease)}
+.tk-cta:hover .tk-arrow{transform:translateX(5px)}
+.tk-sheet{animation:tkSheet 320ms var(--nav-ease) both}
+@keyframes tkSheet{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.tk-sheet-item{animation:tkItem 380ms var(--nav-ease) both}
+@keyframes tkItem{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.tk-sheet,.tk-sheet-item{animation:none}.tk-nav .tk-glass,.tk-nav .tk-bar,.tk-nav .tk-logo,.tk-arrow{transition:none}}
+</style>
+<script>
+(function(){
+  var root = document.documentElement, on = false;
+  function read(){
+    return window.scrollY || root.scrollTop || document.body.scrollTop || 0;
+  }
+  function apply(){
+    var s = read() > 24;
+    if (s !== on) { on = s; root.classList.toggle("tk-scrolled", s); }
+  }
+  apply();
+  window.addEventListener("scroll", apply, { passive: true });
+  document.addEventListener("scroll", apply, { passive: true, capture: true });
+  setInterval(apply, 180);
+})();
+</script>
+</helmet>
+<header class="tk-nav" style="position:fixed;top:0;left:0;right:0;z-index:400;padding-right:clamp(14px,3vw,32px);padding-left:clamp(14px,3vw,32px);padding-bottom:0;pointer-events:none">
+
+<div class="tk-glass" style="pointer-events:auto;max-width:var(--header-max);margin:0 auto;border:1px solid var(--glass-border);border-radius:var(--header-radius)">
+<div class="tk-bar" style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);padding:10px clamp(14px,1.6vw,22px)">
+
+<a href="Home.dc.html" aria-label="Trikuta Adventures and Sports, home" style="flex:0 0 auto;display:flex;align-items:center">
+<img class="tk-logo" src="assets/trikuta-logo.jpg" alt="Trikuta Adventures &amp; Sports" style="object-fit:cover;display:block;border-radius:14px">
+</a>
+
+<sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+<nav aria-label="Main" style="position:relative;display:flex;align-items:center;gap:clamp(12px,1.5vw,22px);margin:0 auto">
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="8">
+<a href="{{ l.href }}" aria-current="{{ l.current }}" onMouseEnter="{{ l.onEnter }}" onMouseLeave="{{ l.onLeave }}" style="position:relative;font-family:var(--font-display);font-size:14.5px;font-weight:500;letter-spacing:0.002em;color:{{ l.color }};white-space:nowrap;padding:10px 2px 12px;transition:color 200ms var(--nav-ease)">{{ l.label }}</a>
+</sc-for>
+<span aria-hidden="true" style="{{ dotStyle }}"></span>
+</nav>
+
+<span style="flex:0 0 auto;display:flex;align-items:center;gap:12px">
+<button type="button" onClick="{{ toggleSearch }}" aria-label="Search this site" style="width:44px;height:44px;display:grid;place-items:center;border-radius:999px;border:1px solid rgba(0,24,72,0.14);background:rgba(255,255,255,0.72);color:#001848;cursor:pointer;padding:0;transition:background 200ms var(--nav-ease),border-color 200ms var(--nav-ease)" style-hover="background:#fff;border-color:rgba(0,24,72,0.3)">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+</button>
+<a class="tk-cta" href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 26px;border-radius:999px;background:var(--trikuta-gold);color:#001848;font-family:var(--font-display);font-size:14.5px;font-weight:600;letter-spacing:0.005em;white-space:nowrap;box-shadow:0 6px 18px -8px rgba(198,138,26,0.6);transition:background 200ms var(--nav-ease),box-shadow 200ms var(--nav-ease)" style-hover="background:var(--trikuta-gold-hi);box-shadow:0 10px 24px -8px rgba(198,138,26,0.7)">Enquire now<span class="tk-arrow" style="display:inline-block;transition:transform 220ms var(--nav-ease)">&rarr;</span></a>
+</span>
+</sc-if>
+
+<sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+<span style="margin-left:auto;display:flex;align-items:center;gap:10px">
+<a class="tk-cta" href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 20px;border-radius:999px;background:var(--trikuta-gold);color:#001848;font-family:var(--font-display);font-size:14px;font-weight:600;white-space:nowrap">Enquire<span class="tk-arrow" style="display:inline-block;transition:transform 220ms var(--nav-ease)">&rarr;</span></a>
+<button type="button" onClick="{{ toggleMenu }}" aria-label="Open menu" aria-expanded="{{ expanded }}" style="width:46px;height:46px;display:grid;place-items:center;gap:0;border-radius:999px;border:1px solid rgba(0,24,72,0.16);background:rgba(255,255,255,0.72);cursor:pointer;padding:0">
+<span style="display:grid;gap:4px">
+<span style="display:block;width:17px;height:1.5px;background:#001848"></span>
+<span style="display:block;width:17px;height:1.5px;background:#001848"></span>
+<span style="display:block;width:11px;height:1.5px;background:var(--trikuta-gold)"></span>
+</span>
+</button>
+</span>
+</sc-if>
+
+</div>
+
+<sc-if value="{{ searchOpen }}" hint-placeholder-val="{{ false }}">
+<div class="tk-sheet" style="border-top:1px solid rgba(0,24,72,0.1);padding:18px clamp(16px,1.8vw,24px) 22px">
+<input type="search" value="{{ query }}" onChange="{{ onQuery }}" onKeyDown="{{ onQueryKey }}" placeholder="Search pages — academy, trekking, gear, projects" aria-label="Search pages" style="width:100%;box-sizing:border-box;font-family:'Source Sans 3',Helvetica,Arial,sans-serif;font-size:16px;color:#001848;background:rgba(255,255,255,0.9);border:1px solid rgba(0,24,72,0.16);border-radius:12px;padding:14px 16px;outline:none">
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
+<sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+<a href="{{ r.href }}" style="font-family:var(--font-display);font-size:13px;font-weight:500;color:#001848;background:rgba(0,24,72,0.05);border:1px solid rgba(0,24,72,0.1);border-radius:999px;padding:9px 15px;transition:background 180ms var(--nav-ease)" style-hover="background:rgba(198,138,26,0.16)">{{ r.label }}</a>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+</div>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div class="tk-sheet" style="pointer-events:auto;position:fixed;inset:0;z-index:410;background:var(--trikuta-navy-deep);display:flex;flex-direction:column;overflow-y:auto">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px clamp(18px,5vw,34px)">
+<img src="assets/trikuta-logo.jpg" alt="Trikuta Adventures &amp; Sports" style="height:52px;width:52px;object-fit:cover;border-radius:12px;display:block">
+<button type="button" onClick="{{ toggleMenu }}" aria-label="Close menu" style="width:48px;height:48px;display:grid;place-items:center;border-radius:999px;border:1px solid rgba(255,255,255,0.28);background:transparent;color:#fff;cursor:pointer;padding:0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+</button>
+</div>
+<nav aria-label="Main" style="padding:8px clamp(18px,5vw,34px) 0;display:grid">
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="8">
+<a class="tk-sheet-item" href="{{ l.href }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:var(--font-display);font-size:clamp(22px,6vw,28px);font-weight:500;color:{{ l.mobileColor }};padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.12);animation-delay:{{ l.delay }}">{{ l.label }}<span style="width:6px;height:6px;border-radius:999px;background:{{ l.dot }}"></span></a>
+</sc-for>
+</nav>
+<div style="padding:30px clamp(18px,5vw,34px) 40px;display:grid;gap:12px">
+<a href="Contact.dc.html" style="display:flex;align-items:center;justify-content:center;gap:9px;height:54px;border-radius:999px;background:var(--trikuta-gold);color:#001848;font-family:var(--font-display);font-size:15px;font-weight:600">Enquire now &rarr;</a>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<a href="tel:+916302990719" style="flex:1 1 130px;text-align:center;line-height:50px;border-radius:999px;border:1px solid rgba(255,255,255,0.32);color:#fff;font-family:var(--font-display);font-size:14px;font-weight:500">Call us</a>
+<a href="https://wa.me/916302990719" target="_blank" rel="noopener" style="flex:1 1 130px;text-align:center;line-height:50px;border-radius:999px;border:1px solid rgba(255,255,255,0.32);color:#fff;font-family:var(--font-display);font-size:14px;font-weight:500">WhatsApp</a>
+</div>
+<p style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:rgba(255,255,255,0.62);margin:8px 0 0">Electronic City Phase 2, Bengaluru 560100<br>trikutaasb@gmail.com</p>
+</div>
+</div>
+</sc-if>
+
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:180},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Home&quot;,&quot;Badminton Academy&quot;,&quot;Adventures&quot;,&quot;Tours&quot;,&quot;Gear Shop&quot;,&quot;Infrastructure&quot;,&quot;About&quot;,&quot;Contact&quot;],&quot;default&quot;:&quot;Home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { narrow: false, ready: false, menuOpen: false, searchOpen: false, query: "", hover: -1 };
+
+  PAGES = [
+    ["Home", "Home.dc.html", "home hero explore"],
+    ["Badminton Academy", "Badminton%20Academy.dc.html", "badminton academy coaching kids batches trial court"],
+    ["Adventures", "Adventures.dc.html", "adventures camps trekking camping outdoor school corporate"],
+    ["Tours", "Tours.dc.html", "tours domestic international customized group travel"],
+    ["Gear Shop", "Gear%20Shop.dc.html", "gear shop equipment rackets tents packs shoes"],
+    ["Infrastructure", "Infrastructure.dc.html", "infrastructure projects adventure parks courts build"],
+    ["About", "About.dc.html", "about vision mission team expertise"],
+    ["Contact", "Contact.dc.html", "contact enquiry phone email whatsapp map"],
+  ];
+
+  componentDidMount() {
+    this.navRef = this.navRef || null;
+    this.sync = () => {
+      const n = window.innerWidth < 1180;
+      if (n !== this.state.narrow || !this.state.ready) {
+        this.setState({ narrow: n, ready: true, menuOpen: n ? this.state.menuOpen : false });
+      }
+    };
+
+    this.onKey = (e) => {
+      if (e.key === "Escape") this.setState({ menuOpen: false, searchOpen: false });
+    };
+    this.sync();
+    window.addEventListener("resize", this.sync);
+    document.addEventListener("keydown", this.onKey);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.sync);
+    document.removeEventListener("keydown", this.onKey);
+    document.body.style.overflow = "";
+  }
+
+  componentDidUpdate() {
+    document.body.style.overflow = this.state.menuOpen ? "hidden" : "";
+    this.measure();
+  }
+
+  measure() {
+    const nav = document.querySelector('.tk-nav nav[aria-label="Main"]');
+    if (!nav) return;
+    const items = [...nav.querySelectorAll("a")];
+    const i = this.state.hover >= 0 ? this.state.hover : this.activeIndex();
+    const el = items[i];
+    if (!el) return;
+    const l = el.offsetLeft + el.offsetWidth / 2 - 3;
+    if (this._dotLeft !== l) { this._dotLeft = l; this.forceUpdate(); }
+  }
+
+  activeIndex() {
+    const active = this.props.active ?? "Home";
+    const i = this.PAGES.findIndex((p) => p[0] === active);
+    return i < 0 ? 0 : i;
+  }
+
+  renderVals() {
+    const ai = this.activeIndex();
+    const q = this.state.query.trim().toLowerCase();
+    const matches = q
+      ? this.PAGES.filter((p) => (p[0] + " " + p[2]).toLowerCase().includes(q))
+      : this.PAGES;
+
+    return {
+      wide: !this.state.narrow,
+      narrow: this.state.narrow,
+      menuOpen: this.state.narrow && this.state.menuOpen,
+      searchOpen: !this.state.narrow && this.state.searchOpen,
+      expanded: this.state.menuOpen ? "true" : "false",
+      query: this.state.query,
+      results: matches.map(([label, href]) => ({ label, href })),
+      dotStyle:
+        "position:absolute;bottom:2px;left:" + (this._dotLeft || 0) +
+        "px;width:6px;height:6px;border-radius:999px;background:#c68a1a;transition:left 320ms cubic-bezier(0.16,1,0.3,1);pointer-events:none",
+      links: this.PAGES.map(([label, href], i) => ({
+        label,
+        href,
+        current: i === ai ? "page" : undefined,
+        color: i === ai ? "#001848" : "rgba(0,24,72,0.68)",
+        mobileColor: i === ai ? "#ebb130" : "#ffffff",
+        dot: i === ai ? "#ebb130" : "transparent",
+        delay: 40 + i * 35 + "ms",
+        onEnter: () => this.setState({ hover: i }),
+        onLeave: () => this.setState({ hover: -1 }),
+      })),
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      toggleSearch: () => this.setState((s) => ({ searchOpen: !s.searchOpen, query: "" })),
+      onQuery: (e) => this.setState({ query: e.target.value }),
+      onQueryKey: (e) => {
+        if (e.key === "Enter" && matches.length) window.location.href = matches[0][1];
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* Trikuta typefaces.
+   SUBSTITUTION NOTICE: only a logo raster was supplied, so no font binaries exist.
+   The wordmark is a heavy geometric sans with flat terminals, a perfectly round "U"
+   bowl and wide uppercase tracking — Montserrat ExtraBold is the closest Google Fonts
+   match and is used for display and headings. Source Sans 3 carries body copy: a
+   humanist grotesque that stays legible at small sizes and does not compete with the
+   display face. Replace both with self-hosted @font-face rules when real files arrive. */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+:root {
+  --font-display: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Documentation and data surfaces only — never in brand layouts. */
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}

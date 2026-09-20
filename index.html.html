@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Trikuta Adventures &amp; Sports Pvt Ltd | Badminton Academy, Adventure Tours &amp; Sports Infrastructure, Electronic City Bengaluru</title>
+<meta name="description" content="Trikuta Adventures &amp; Sports Pvt Ltd runs Trikuta Badminton Academy in Electronic City, Bengaluru, alongside adventure camps, trekking, camping, domestic and international tours, a gear shop and adventure and sports infrastructure development.">
+<meta name="keywords" content="Trikuta Adventures &amp; Sports, Trikuta Badminton Academy, badminton academy Electronic City, badminton coaching Electronic City, adventure tours, adventure camps, trekking, camping, school adventure programs, corporate adventure programs, sports infrastructure development, adventure infrastructure development">
+<link rel="canonical" href="https://www.trikutaadventuresports.co.in/">
+<script src="./ds-base.js"></script>
+<script>(function(){setInterval(function(){var v=document.querySelector('video');if(v&&v.paused){v.muted=true;v.defaultMuted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}},900);document.addEventListener('pointerdown',function(){var v=document.querySelector('video');if(v){v.muted=true;v.play().catch(function(){});}},{once:true});})();</script>
+<script src="./image-slot.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+<style>@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}:root:root{--font-display:'Nohemi',Helvetica,Arial,sans-serif}body{margin:0;background:#fff}h1,h2{text-transform:none !important;letter-spacing:-0.005em}div::-webkit-scrollbar{height:0;width:0}a{color:#001848;text-decoration:none;border-bottom:0}a:hover{color:#c68a1a}
+html.js-motion [data-reveal]{opacity:0}
+@media (prefers-reduced-motion:reduce){html.js-motion [data-reveal]{opacity:1}}</style>
+<script>
+/* Motion spec: eases power3.out (entrances) and none (scrubs); durations 0.6 / 0.9 / 1.2s; stagger 0.08. */
+(function(){
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js-motion");
+  var tries = 0;
+  var id = setInterval(function(){
+    if (!window.gsap || !window.ScrollTrigger) { if (++tries > 60) clearInterval(id); return; }
+    if (!document.querySelector('[data-anim="hero-h1"]')) { if (++tries > 60) clearInterval(id); return; }
+    clearInterval(id);
+    init();
+  }, 200);
+
+  function showHero(){
+    var sel = '[data-anim="hero-eyebrow"],[data-anim="hero-h1"],[data-anim="hero-rule"],[data-anim="hero-sub"],[data-anim="hero-cta"] > a';
+    document.querySelectorAll(sel).forEach(function(el){ el.style.opacity = "1"; el.style.transform = "none"; });
+  }
+
+  function showAll(){
+    showHero();
+    document.querySelectorAll("[data-reveal]").forEach(function(el){ el.style.opacity = "1"; el.style.transform = "none"; });
+    document.querySelectorAll("[data-reveal-group]").forEach(function(g){
+      Array.prototype.forEach.call(g.children, function(el){ el.style.opacity = "1"; el.style.transform = "none"; });
+    });
+  }
+
+  function init(){
+    if (window.__trikutaMotionInit) return;
+    window.__trikutaMotionInit = true;
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.getAll().forEach(function(t){ t.kill(); });
+    setTimeout(showAll, 6000);
+    gsap.defaults({ ease: "power3.out", duration: 0.9 });
+    var mm = gsap.matchMedia();
+
+    mm.add({
+      reduce: "(prefers-reduced-motion: reduce)",
+      ok: "(prefers-reduced-motion: no-preference)",
+      desk: "(min-width: 900px)"
+    }, function(ctx){
+      var c = ctx.conditions;
+      if (c.reduce) { gsap.set("[data-reveal]", { opacity: 1, y: 0 }); return; }
+
+      var tl = gsap.timeline({ defaults: { duration: 0.9 }, onComplete: showHero });
+      tl.fromTo('[data-anim="hero-eyebrow"]', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
+        .fromTo('[data-anim="hero-h1"]', { y: 40, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.35")
+        .fromTo('[data-anim="hero-rule"]', { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, transformOrigin: "left center", duration: 0.7 }, "-=0.55")
+        .fromTo('[data-anim="hero-sub"]', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "<0.1")
+        .fromTo('[data-anim="hero-cta"] > a', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.08 }, "-=0.45")
+        .fromTo('[data-anim="hero-media"]', { scale: 1.08 }, { scale: 1, duration: 1.2, ease: "circ.out" }, 0);
+      setTimeout(showHero, 2600);
+
+      gsap.set("[data-reveal]", { y: 28, opacity: 0 });
+      ScrollTrigger.batch("[data-reveal]", {
+        start: "top 86%", once: true,
+        onEnter: function(batch){ gsap.to(batch, { y: 0, opacity: 1, duration: 0.9, stagger: 0.08 }); }
+      });
+
+      gsap.utils.toArray("[data-reveal-group]").forEach(function(group){
+        gsap.set(group.children, { y: 26, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: group, start: "top 84%", once: true,
+          onEnter: function(){ gsap.to(group.children, { y: 0, opacity: 1, duration: 0.8, stagger: 0.08 }); }
+        });
+      });
+
+      if (c.desk) {
+        gsap.utils.toArray("[data-parallax]").forEach(function(el){
+          gsap.fromTo(el, { yPercent: -7 }, {
+            yPercent: 7, ease: "none",
+            scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: 0.5 }
+          });
+        });
+
+        var stage = document.querySelector("[data-cine]");
+        if (stage) {
+          var panels = gsap.utils.toArray("[data-cine-panel]");
+          var ct = gsap.timeline({
+            scrollTrigger: { trigger: stage, start: "top top", end: "+=" + (panels.length * 90) + "%", scrub: 0.6, pin: true, anticipatePin: 1 }
+          });
+          gsap.set(panels, { opacity: 0, y: 26 });
+          gsap.set(panels[0], { opacity: 1, y: 0 });
+          panels.forEach(function(p, i){
+            if (i === 0) return;
+            ct.to(panels[i - 1], { opacity: 0, y: -26, ease: "none", duration: 0.4 })
+              .fromTo(p, { opacity: 0, y: 26 }, { opacity: 1, y: 0, ease: "none", duration: 0.4 }, "<0.15");
+          });
+          ct.fromTo("[data-cine-media]", { scale: 1.02 }, { scale: 1.16, ease: "none", duration: ct.duration() || 1 }, 0);
+          ct.fromTo("[data-cine-index]", { scaleX: 0 }, { scaleX: 1, transformOrigin: "left center", ease: "none", duration: ct.duration() || 1 }, 0);
+        }
+      }
+    });
+
+    window.addEventListener("load", function(){ ScrollTrigger.refresh(); });
+    setTimeout(function(){ ScrollTrigger.refresh(); }, 1200);
+  }
+})();
+</script>
+</helmet>
+<div style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;color:#3a404a;background:#fff">
+
+<dc-import name="SiteNav" active="Home" hint-size="100%,0px"></dc-import>
+
+<section style="position:relative;background:#001848;min-height:clamp(540px,76vh,720px);display:flex;align-items:center;overflow:hidden">
+<span data-anim="hero-media" style="position:absolute;inset:0;background:#001848"><video src="assets/hero.mp4" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="auto" poster="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&amp;fit=crop&amp;w=2400&amp;q=80" style="width:100%;height:100%;object-fit:cover;display:block"></video></span>
+<span style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to right,rgba(0,12,36,0.95) 0%,rgba(0,15,42,0.86) 38%,rgba(0,18,51,0.62) 70%,rgba(0,18,51,0.42) 100%)"></span>
+<span style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,12,36,0.72) 0%,rgba(0,18,51,0) 45%)"></span>
+<div style="position:relative;pointer-events:none;width:100%;max-width:1200px;margin:0 auto;padding:clamp(150px,15vw,180px) clamp(18px,4vw,40px) clamp(56px,8vw,96px)">
+<span data-anim="hero-eyebrow" style="display:block;white-space:nowrap"><x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Eyebrow" tone="goldOnDeep" hint-size="280px,14px">Electronic City, Bengaluru</x-import></span>
+<h1 style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(40px,7.4vw,82px);font-weight:800;line-height:1.02;letter-spacing:0;color:#fff;margin:22px 0 26px;text-wrap:balance" data-anim="hero-h1">Explore. Grow. Achieve.</h1>
+<span data-anim="hero-rule" style="display:block"><x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="170px" hint-size="170px,2px"></x-import></span>
+<p style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;font-size:clamp(16px,1.9vw,21px);font-weight:400;line-height:1.6;color:rgba(255,255,255,0.86);margin:26px 0 38px;max-width:46ch;text-wrap:pretty" data-anim="hero-sub">Adventure, sports, travel and infrastructure under one roof. We coach badminton in Electronic City, run camps and treks for schools and companies, stock the gear, and build the courts and parks it happens in.</p>
+<span data-anim="hero-cta" style="display:flex;gap:14px;flex-wrap:wrap;pointer-events:auto">
+<a href="Adventures.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#001848;background:#c68a1a;text-decoration:none;padding:18px 28px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:#ebb130">Explore Adventures</a>
+<a href="Badminton%20Academy.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff;background:transparent;border:1px solid rgba(255,255,255,0.5);text-decoration:none;padding:17px 28px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:rgba(255,255,255,0.12)">Join Badminton Academy</a>
+</span>
+</div>
+</section>
+
+<section style="padding:clamp(56px,8vw,96px) clamp(18px,4vw,40px)">
+<div style="max-width:1200px;margin:0 auto">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Eyebrow" hint-size="150px,14px">What we do</x-import>
+<h2 style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.14;letter-spacing:-0.005em;color:#001848;margin:16px 0 18px">Five divisions, one company</h2>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="110px" hint-size="110px,2px"></x-import>
+<p style="font-size:17px;line-height:1.62;max-width:620px;margin:22px 0 0">Coaching, expeditions, travel, equipment and construction sit under one roof, so a school, a company or a family deals with one team rather than five suppliers.</p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:20px;margin-top:clamp(36px,5vw,52px)">
+
+<a href="Badminton%20Academy.dc.html" style="text-decoration:none;display:grid;gap:18px;justify-items:start;align-content:start;grid-template-rows:auto auto 1fr auto;padding:30px 26px;background:#fff;border:1px solid rgba(0,24,72,0.12);border-top:3px solid #c68a1a;border-radius:6px;transition:border-color 220ms cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(0,24,72,0.32)">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Crest" icon="trophy" size="64" hint-size="64px,64px"></x-import>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:19px;font-weight:700;letter-spacing:0.02em;color:#001848;line-height:1.2;min-height:2.4em">Badminton Academy</span>
+<span style="font-size:15px;line-height:1.6;color:#3a404a">Coaching from a first lesson to tournament level, for kids and adults.</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a5e08;margin-top:auto">Book a trial class</span>
+</a>
+
+<a href="Tours.dc.html" style="text-decoration:none;display:grid;gap:18px;justify-items:start;align-content:start;grid-template-rows:auto auto 1fr auto;padding:30px 26px;background:#fff;border:1px solid rgba(0,24,72,0.12);border-radius:6px;transition:border-color 220ms cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(0,24,72,0.32)">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Crest" icon="compass" size="64" hint-size="64px,64px"></x-import>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:19px;font-weight:700;letter-spacing:0.02em;color:#001848;line-height:1.2;min-height:2.4em">Adventure Tours</span>
+<span style="font-size:15px;line-height:1.6;color:#3a404a">Domestic, international and customised itineraries, planned around your dates.</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a5e08;margin-top:auto">See tour categories</span>
+</a>
+
+<a href="Adventures.dc.html" style="text-decoration:none;display:grid;gap:18px;justify-items:start;align-content:start;grid-template-rows:auto auto 1fr auto;padding:30px 26px;background:#fff;border:1px solid rgba(0,24,72,0.12);border-radius:6px;transition:border-color 220ms cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(0,24,72,0.32)">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Crest" icon="mountain-snow" size="64" hint-size="64px,64px"></x-import>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:19px;font-weight:700;letter-spacing:0.02em;color:#001848;line-height:1.2;min-height:2.4em">Adventures</span>
+<span style="font-size:15px;line-height:1.6;color:#3a404a">Camps, treks, camping and outdoor programmes for schools and companies.</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a5e08;margin-top:auto">Explore programmes</span>
+</a>
+
+<a href="Gear%20Shop.dc.html" style="text-decoration:none;display:grid;gap:18px;justify-items:start;align-content:start;grid-template-rows:auto auto 1fr auto;padding:30px 26px;background:#fff;border:1px solid rgba(0,24,72,0.12);border-radius:6px;transition:border-color 220ms cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(0,24,72,0.32)">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Crest" icon="backpack" size="64" hint-size="64px,64px"></x-import>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:19px;font-weight:700;letter-spacing:0.02em;color:#001848;line-height:1.2;min-height:2.4em">Gear Shop</span>
+<span style="font-size:15px;line-height:1.6;color:#3a404a">Badminton, trekking and camping equipment, plus outdoor accessories.</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a5e08;margin-top:auto">View products</span>
+</a>
+
+<a href="Infrastructure.dc.html" style="text-decoration:none;display:grid;gap:18px;justify-items:start;align-content:start;grid-template-rows:auto auto 1fr auto;padding:30px 26px;background:#fff;border:1px solid rgba(0,24,72,0.12);border-radius:6px;transition:border-color 220ms cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(0,24,72,0.32)">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Crest" icon="hard-hat" size="64" hint-size="64px,64px"></x-import>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:19px;font-weight:700;letter-spacing:0.02em;color:#001848;line-height:1.2;min-height:2.4em">Infrastructure Development</span>
+<span style="font-size:15px;line-height:1.6;color:#3a404a">Adventure parks, sports facilities and project development, built end to end.</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a5e08;margin-top:auto">Discuss a project</span>
+</a>
+
+</div>
+</div>
+</section>
+
+<section style="background:#001848;color:rgba(255,255,255,0.82);padding:clamp(56px,8vw,96px) clamp(18px,4vw,40px)">
+<div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,64px);align-items:center">
+<div>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Eyebrow" tone="goldOnDeep" hint-size="260px,14px">Trikuta Badminton Academy</x-import>
+<h2 style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.14;letter-spacing:-0.005em;color:#fff;margin:16px 0 18px">Coaching at every level</h2>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="110px" hint-size="110px,2px"></x-import>
+<p style="font-size:17px;line-height:1.62;margin:22px 0 26px;max-width:520px">Kids starting out, club players working on consistency and competitive players preparing for tournaments all train at the academy in Electronic City. Group classes, one-on-one sessions and fitness training run through the week.</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px">
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Kids</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Beginner</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Intermediate</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Advanced</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Professional</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">1-on-1</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Group classes</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Fitness</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ebb130;border:1px solid rgba(255,255,255,0.22);padding:8px 13px;border-radius:999px">Tournament prep</span>
+</div>
+<span style="display:flex;gap:14px;flex-wrap:wrap">
+<a href="Badminton%20Academy.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#001848;background:#c68a1a;text-decoration:none;padding:17px 26px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:#ebb130">Book a Trial Class</a>
+<a href="https://wa.me/916302990719" target="_blank" rel="noopener" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,0.5);text-decoration:none;padding:16px 26px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:rgba(255,255,255,0.12)">WhatsApp enquiry</a>
+</span>
+</div>
+<div style="position:relative;height:clamp(300px,42vw,440px);border:1px solid rgba(255,255,255,0.18);border-radius:10px;overflow:hidden">
+<img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1600&q=80" alt="Badminton player on an indoor court" style="width:100%;height:100%;object-fit:cover;display:block">
+</div>
+</div>
+</section>
+
+<section style="padding:clamp(56px,8vw,96px) clamp(18px,4vw,40px)">
+<div style="max-width:1200px;margin:0 auto">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Eyebrow" hint-size="150px,14px">Our coaches</x-import>
+<h2 data-reveal style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.14;letter-spacing:-0.005em;color:#001848;margin:16px 0 18px">Who you train under</h2>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="110px" hint-size="110px,2px"></x-import>
+<p data-reveal style="font-size:17px;line-height:1.62;max-width:600px;margin:22px 0 0">Every batch is taken by a named coach, not a rotating pool. You will know who is on court before you join.</p>
+<div data-reveal-group style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:clamp(36px,5vw,52px)">
+<div style="display:grid;gap:18px;align-content:start">
+<div style="position:relative;width:100%;aspect-ratio:4/5;border:1px solid rgba(0,24,72,0.12);border-radius:10px;overflow:hidden;background:#001848">
+<img src="assets/coach-suresh-crop.png" alt="Suresh Babu J, Head Coach" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block">
+</div>
+<div style="display:grid;gap:8px">
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:19px;font-weight:600;color:#001848;line-height:1.25">Suresh Babu J</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a5e08">Head Coach</span>
+<span style="font-size:15px;line-height:1.62;color:#3a404a">Takes the advanced and professional batches, and the tournament preparation block.</span>
+</div>
+</div>
+<sc-for list="{{ coaches }}" as="c" hint-placeholder-count="2">
+<div style="display:grid;gap:18px;align-content:start">
+<div style="position:relative;width:100%;aspect-ratio:4/5;border:1px solid rgba(0,24,72,0.12);border-radius:10px;overflow:hidden;background:#001848">
+<image-slot id="{{ c.slot }}" shape="rect" placeholder="Drop a portrait of this coach"></image-slot>
+</div>
+<div style="display:grid;gap:8px">
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:19px;font-weight:600;color:#001848;line-height:1.25">{{ c.name }}</span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a5e08">{{ c.role }}</span>
+<span style="font-size:15px;line-height:1.62;color:#3a404a">{{ c.body }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(32px,4vw,44px)">
+<a href="Badminton%20Academy.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff;background:#001848;padding:17px 26px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:#0a2a66">Meet the academy</a>
+<a href="Contact.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#001848;border:1px solid rgba(0,24,72,0.3);padding:16px 26px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:rgba(0,24,72,0.05)">Book a Trial Class</a>
+</div>
+</div>
+</section>
+
+<section style="padding:clamp(56px,8vw,96px) clamp(18px,4vw,40px);background:#f7f8fa">
+<div style="max-width:1200px;margin:0 auto">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Eyebrow" hint-size="150px,14px">Adventures</x-import>
+<h2 style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.14;letter-spacing:-0.005em;color:#001848;margin:16px 0 18px">Camps, treks and trails</h2>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="110px" hint-size="110px,2px"></x-import>
+<p style="font-size:17px;line-height:1.62;max-width:620px;margin:22px 0 0">Weekend camps near Bengaluru through to multi-day Himalayan treks. Schools and companies get a programme written for their group size, dates and fitness.</p>
+<div style="position:relative;margin-top:clamp(36px,5vw,52px)">
+<div data-rail="adventures" style="display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding-bottom:4px">
+<a href="Adventures.dc.html" style="flex:0 0 clamp(250px,27vw,300px);height:clamp(320px,34vw,390px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#001233;text-decoration:none;display:block" style-hover="--z:1.05">
+<span style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1627289496743-8a9a08bb228a?auto=format&fit=crop&w=1200&q=80" alt="Group hiking on open ground" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+<span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,18,51,0.92) 0%,rgba(0,18,51,0.45) 46%,rgba(0,18,51,0.10) 100%)"></span>
+<span style="position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:10px;justify-items:start">
+<span style="width:26px;height:2px;background:#c68a1a"></span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;color:#fff;line-height:1.2">Adventure camps</span>
+<span style="font-size:14px;line-height:1.5;color:rgba(255,255,255,0.74)">Weekend and multi-day</span>
+</span>
+</a>
+<a href="Adventures.dc.html" style="flex:0 0 clamp(250px,27vw,300px);height:clamp(320px,34vw,390px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#001233;text-decoration:none;display:block" style-hover="--z:1.05">
+<span style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1469026140142-cb239ea68152?auto=format&fit=crop&w=1200&q=80" alt="Climbers on a mountain ridge" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+<span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,18,51,0.92) 0%,rgba(0,18,51,0.45) 46%,rgba(0,18,51,0.10) 100%)"></span>
+<span style="position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:10px;justify-items:start">
+<span style="width:26px;height:2px;background:#c68a1a"></span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;color:#fff;line-height:1.2">Trekking</span>
+<span style="font-size:14px;line-height:1.5;color:rgba(255,255,255,0.74)">Beginner to high altitude</span>
+</span>
+</a>
+<a href="Adventures.dc.html" style="flex:0 0 clamp(250px,27vw,300px);height:clamp(320px,34vw,390px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#001233;text-decoration:none;display:block" style-hover="--z:1.05">
+<span style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1200&q=80" alt="Tent pitched at a camp" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+<span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,18,51,0.92) 0%,rgba(0,18,51,0.45) 46%,rgba(0,18,51,0.10) 100%)"></span>
+<span style="position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:10px;justify-items:start">
+<span style="width:26px;height:2px;background:#c68a1a"></span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;color:#fff;line-height:1.2">Camping</span>
+<span style="font-size:14px;line-height:1.5;color:rgba(255,255,255,0.74)">Tented and base camps</span>
+</span>
+</a>
+<a href="Adventures.dc.html" style="flex:0 0 clamp(250px,27vw,300px);height:clamp(320px,34vw,390px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#001233;text-decoration:none;display:block" style-hover="--z:1.05">
+<span style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1531322804667-8d2907f41406?auto=format&fit=crop&w=1200&q=80" alt="Walking across rock" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+<span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,18,51,0.92) 0%,rgba(0,18,51,0.45) 46%,rgba(0,18,51,0.10) 100%)"></span>
+<span style="position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:10px;justify-items:start">
+<span style="width:26px;height:2px;background:#c68a1a"></span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;color:#fff;line-height:1.2">Outdoor activities</span>
+<span style="font-size:14px;line-height:1.5;color:rgba(255,255,255,0.74)">Rope, water and terrain</span>
+</span>
+</a>
+<a href="Adventures.dc.html" style="flex:0 0 clamp(250px,27vw,300px);height:clamp(320px,34vw,390px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#001233;text-decoration:none;display:block" style-hover="--z:1.05">
+<span style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1511715885542-a3713331633d?auto=format&fit=crop&w=1200&q=80" alt="Group on a mountain trail" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+<span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,18,51,0.92) 0%,rgba(0,18,51,0.45) 46%,rgba(0,18,51,0.10) 100%)"></span>
+<span style="position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:10px;justify-items:start">
+<span style="width:26px;height:2px;background:#c68a1a"></span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;color:#fff;line-height:1.2">School programmes</span>
+<span style="font-size:14px;line-height:1.5;color:rgba(255,255,255,0.74)">Curriculum-linked camps</span>
+</span>
+</a>
+<a href="Adventures.dc.html" style="flex:0 0 clamp(250px,27vw,300px);height:clamp(320px,34vw,390px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#001233;text-decoration:none;display:block" style-hover="--z:1.05">
+<span style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1584907600887-9732fa3647ac?auto=format&fit=crop&w=1200&q=80" alt="Walkers on a green hillside" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+<span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,18,51,0.92) 0%,rgba(0,18,51,0.45) 46%,rgba(0,18,51,0.10) 100%)"></span>
+<span style="position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:10px;justify-items:start">
+<span style="width:26px;height:2px;background:#c68a1a"></span>
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;color:#fff;line-height:1.2">Corporate programmes</span>
+<span style="font-size:14px;line-height:1.5;color:rgba(255,255,255,0.74)">Offsites and team days</span>
+</span>
+</a>
+</div>
+<div style="display:flex;gap:10px;margin-top:26px">
+<button type="button" aria-label="Previous" onClick="{{ prev }}" style="width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(0,24,72,0.22);background:#fff;border-radius:4px;cursor:pointer;color:#001848;font-size:17px;line-height:1;transition:border-color 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:#c68a1a">&#8592;</button>
+<button type="button" aria-label="Next" onClick="{{ next }}" style="width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(0,24,72,0.22);background:#fff;border-radius:4px;cursor:pointer;color:#001848;font-size:17px;line-height:1;transition:border-color 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:#c68a1a">&#8594;</button>
+</div>
+</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:36px">
+<a href="Adventures.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff;background:#001848;text-decoration:none;padding:17px 26px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:#0a2a66">Explore Programs</a>
+<a href="Contact.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#001848;border:1px solid rgba(0,24,72,0.3);text-decoration:none;padding:16px 26px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:rgba(0,24,72,0.05)">Enquire Now</a>
+</div>
+</div>
+</section>
+
+<section style="padding:clamp(56px,8vw,96px) clamp(18px,4vw,40px)">
+<div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,56px);align-items:center">
+<div style="position:relative;height:clamp(280px,36vw,400px);border:1px solid rgba(0,24,72,0.12);border-radius:10px;overflow:hidden">
+<img src="https://images.unsplash.com/photo-1775993167393-f2add1f8eec2?auto=format&fit=crop&w=1600&q=80" alt="Indoor courts with blue flooring" style="width:100%;height:100%;object-fit:cover;display:block">
+</div>
+<div>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Eyebrow" hint-size="240px,14px">Infrastructure development</x-import>
+<h2 style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.14;letter-spacing:-0.005em;color:#001848;margin:16px 0 18px">We build the places too</h2>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="110px" hint-size="110px,2px"></x-import>
+<p style="font-size:17px;line-height:1.62;margin:22px 0 26px;max-width:520px">Resorts, schools, campuses and local bodies come to us for adventure parks, courts, climbing structures and outdoor facilities. We take a project from site survey and design through to handover.</p>
+<a href="Infrastructure.dc.html" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff;background:#001848;text-decoration:none;padding:17px 26px;border-radius:4px;display:inline-block;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:#0a2a66">See what we build</a>
+</div>
+</div>
+</section>
+
+<section style="background:#000c24;padding:clamp(48px,7vw,80px) clamp(18px,4vw,40px)">
+<div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,48px);align-items:start">
+<div>
+<h2 style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(26px,3.4vw,38px);font-weight:600;line-height:1.14;letter-spacing:-0.005em;color:#fff;margin:0 0 18px">Get in touch</h2>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="110px" hint-size="110px,2px"></x-import>
+<span style="display:block;height:20px"></span>
+<p style="font-size:17px;line-height:1.62;color:rgba(255,255,255,0.78);margin:0;max-width:460px">Tell us the group, the dates and what you want out of it. We reply the same day on WhatsApp.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+<a href="https://wa.me/916302990719" target="_blank" rel="noopener" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#001848;background:#c68a1a;text-decoration:none;padding:16px 24px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:#ebb130">WhatsApp us</a>
+<a href="tel:+916302990719" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,0.5);text-decoration:none;padding:15px 24px;border-radius:4px;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:rgba(255,255,255,0.12)">Call 6302990719</a>
+</div>
+<div style="display:grid;gap:18px;margin-top:clamp(32px,4vw,44px);max-width:460px">
+<div style="display:grid;grid-template-columns:1fr;gap:6px;border-top:1px solid rgba(255,255,255,0.18);padding-top:16px">
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ebb130">Where we are</span>
+<span style="font-size:15px;line-height:1.62;color:rgba(255,255,255,0.78)">Govinda Shetty Palya Main Road, Electronic City Phase 2, Bengaluru 560100.</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr;gap:6px;border-top:1px solid rgba(255,255,255,0.18);padding-top:16px">
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ebb130">What to include</span>
+<span style="font-size:15px;line-height:1.62;color:rgba(255,255,255,0.78)">Group size and ages, your dates, and for the academy whether the player has trained before.</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr;gap:6px;border-top:1px solid rgba(255,255,255,0.18);padding-top:16px">
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ebb130">Who we work with</span>
+<span style="font-size:15px;line-height:1.62;color:rgba(255,255,255,0.78)">Families and individual players, schools, companies, resorts and local bodies.</span>
+</div>
+</div>
+</div>
+
+<div style="border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:clamp(24px,3vw,34px);background:rgba(255,255,255,0.04)">
+<span style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#ebb130">Quick enquiry</span>
+<form onSubmit="{{ submit }}" style="display:grid;gap:14px;margin-top:20px">
+<input name="name" required placeholder="Your name" style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;font-size:16px;color:#fff;background:rgba(0,12,36,0.6);border:1px solid rgba(255,255,255,0.28);border-radius:4px;padding:14px 16px;outline:none" style-focus="border-color:#ebb130">
+<input name="phone" type="tel" required placeholder="Phone number" style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;font-size:16px;color:#fff;background:rgba(0,12,36,0.6);border:1px solid rgba(255,255,255,0.28);border-radius:4px;padding:14px 16px;outline:none" style-focus="border-color:#ebb130">
+<select name="topic" style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;font-size:16px;color:#fff;background:rgba(0,12,36,0.6);border:1px solid rgba(255,255,255,0.28);border-radius:4px;padding:14px 16px;outline:none" style-focus="border-color:#ebb130">
+<option style="color:#001848">Badminton Academy</option>
+<option style="color:#001848">Adventure camps</option>
+<option style="color:#001848">Trekking or camping</option>
+<option style="color:#001848">School programme</option>
+<option style="color:#001848">Corporate programme</option>
+<option style="color:#001848">Tours</option>
+<option style="color:#001848">Gear Shop</option>
+<option style="color:#001848">Infrastructure project</option>
+</select>
+<textarea name="message" rows="3" placeholder="Group size, dates and what you are looking for" style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#fff;background:rgba(0,12,36,0.6);border:1px solid rgba(255,255,255,0.28);border-radius:4px;padding:14px 16px;outline:none;resize:vertical" style-focus="border-color:#ebb130"></textarea>
+<button type="submit" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#001848;background:#c68a1a;border:0;padding:17px 24px;border-radius:4px;cursor:pointer;justify-self:start;white-space:nowrap;transition:background 150ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:#ebb130">Send enquiry</button>
+<span style="font-size:13px;line-height:1.55;color:rgba(255,255,255,0.6)">Sending opens WhatsApp with your details filled in.</span>
+</form>
+</div>
+</div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,620px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const start = () => {
+      const v = document.querySelector("video");
+      if (v) { v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    };
+    let n = 0;
+    const id = setInterval(() => {
+      const v = document.querySelector("video");
+      if (v && !v.paused) { clearInterval(id); return; }
+      start();
+      if (++n > 20) clearInterval(id);
+    }, 400);
+    document.addEventListener("pointerdown", start, { once: true });
+  }
+
+  scrollRail(dir, ev) {
+    const scope = ev && ev.currentTarget ? ev.currentTarget.closest("section") : document;
+    const el = scope && scope.querySelector('[data-rail="adventures"]');
+    if (!el) return;
+    const step = el.firstElementChild ? el.firstElementChild.offsetWidth + 18 : 300;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  }
+
+  renderVals() {
+    return {
+      coaches: [
+        { slot: "home-coach-2", noPhoto: true, name: "Add coach name", role: "Junior Programme", body: "Add a line: who they coach and what they focus on with young players." },
+        { slot: "home-coach-3", noPhoto: true, name: "Add coach name", role: "Fitness and conditioning", body: "Add a line: their background in strength, agility and injury prevention." },
+      ],
+      prev: (e) => this.scrollRail(-1, e),
+      next: (e) => this.scrollRail(1, e),
+      submit: (e) => {
+        e.preventDefault();
+        const f = e.target;
+        const get = (n) => (f.elements[n] && f.elements[n].value ? f.elements[n].value.trim() : "");
+        const lines = [
+          "Enquiry from trikutaadventuresports.co.in",
+          "Name: " + (get("name") || "-"),
+          "Phone: " + (get("phone") || "-"),
+          "About: " + (get("topic") || "-"),
+          get("message") ? "Message: " + get("message") : null,
+        ].filter(Boolean);
+        window.open("https://wa.me/916302990719?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

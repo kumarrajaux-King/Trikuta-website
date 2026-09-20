@@ -1,0 +1,27 @@
+/* Motion. Brisk and purposeful — this is an outfitter, not a luxury brand.
+   Movement is short, linear-ish and never decorative. Nothing bounces. */
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+
+  --duration-instant: 80ms; /* @kind other */
+  --duration-fast: 150ms; /* @kind other */
+  --duration-base: 220ms; /* @kind other */
+  --duration-slow: 380ms; /* @kind other */
+  --duration-reveal: 600ms; /* @kind other */
+  --duration-marquee: 32s; /* @kind other */
+
+  --transition-control: color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard),
+    opacity var(--duration-fast) var(--ease-standard);
+  --transition-surface: transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+  --transition-media: transform var(--duration-slow) var(--ease-out);
+
+  /* Cards do not lift — their image zooms inside a fixed frame instead. */
+  --media-zoom: 1.05; /* @kind other */
+  --press-scale: 0.985; /* @kind other */
+}
