@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Gallery | Trikuta Adventures &amp; Sports Pvt Ltd</title>
+<meta name="description" content="Photos and videos from Trikuta Adventures &amp; Sports — trekking, tours, adventures, campfire nights and more.">
+<script src="./ds-base.js"></script>
+<script src="./image-slot.js"></script>
+<style>@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}:root:root{--font-display:'Nohemi',Helvetica,Arial,sans-serif}body{margin:0;background:#fff}h1,h2{text-transform:none !important;letter-spacing:-0.005em}a{color:#001848;text-decoration:none;border-bottom:0}a:hover{color:#c68a1a}
+.tk-filter{display:flex;gap:8px;flex-wrap:wrap}
+.tk-filter button{font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:11px 22px;border-radius:4px;border:1px solid rgba(0,24,72,0.18);background:transparent;color:#001848;cursor:pointer;transition:background 180ms cubic-bezier(0.16,1,0.3,1),color 180ms cubic-bezier(0.16,1,0.3,1),border-color 180ms cubic-bezier(0.16,1,0.3,1)}
+.tk-filter button:hover{background:rgba(0,24,72,0.06)}
+.tk-filter button[data-active="true"]{background:#001848;color:#fff;border-color:#001848}
+.tk-grid{display:grid;gap:12px}
+.tk-grid-item{position:relative;border-radius:6px;overflow:hidden;cursor:pointer;background:#001848}
+.tk-grid-item img,.tk-grid-item video{width:100%;height:100%;object-fit:cover;display:block;transition:transform 380ms cubic-bezier(0.16,1,0.3,1)}
+.tk-grid-item:hover img,.tk-grid-item:hover video{transform:scale(1.05)}
+.tk-grid-item .tk-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,12,36,0.72) 0%,transparent 50%);opacity:0;transition:opacity 220ms cubic-bezier(0.16,1,0.3,1);display:flex;align-items:flex-end;padding:16px}
+.tk-grid-item:hover .tk-overlay{opacity:1}
+.tk-overlay span{font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#ebb130}
+.tk-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:999px;background:rgba(0,18,51,0.62);backdrop-filter:blur(10px);display:grid;place-items:center;pointer-events:none}
+.tk-lightbox{position:fixed;inset:0;z-index:500;background:rgba(0,6,18,0.92);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.tk-lightbox img,.tk-lightbox video{max-width:92vw;max-height:88vh;border-radius:6px;object-fit:contain}
+.tk-lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,18,51,0.6);color:#fff;display:grid;place-items:center;cursor:pointer}
+.tk-lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:999px;border:1px solid rgba(255,255,255,0.25);background:rgba(0,18,51,0.5);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background 180ms}
+.tk-lb-nav:hover{background:rgba(198,138,26,0.4)}
+</style>
+</helmet>
+<div style="font-family:'Source Sans 3',Helvetica,Arial,sans-serif;color:#3a404a;background:#fff">
+
+<dc-import name="SiteNav" active="Gallery" hint-size="100%,0px"></dc-import>
+
+<!-- Hero -->
+<section style="position:relative;background:#001848;overflow:hidden">
+<span style="position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:clamp(380px,40vw,560px);height:clamp(380px,40vw,560px);opacity:0.03;pointer-events:none"><img src="assets/trikuta-logo.jpg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;filter:brightness(10)"></span>
+<span style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80" alt="Mountain landscape" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.35"></span>
+<span style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to right,rgba(0,12,36,0.94) 0%,rgba(0,18,51,0.60) 58%,rgba(0,18,51,0.34) 100%)"></span>
+<div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(140px,14vw,170px) clamp(18px,4vw,40px) clamp(48px,6vw,80px)">
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.Eyebrow" tone="goldOnDeep" hint-size="120px,14px">Gallery</x-import>
+<h1 style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:clamp(32px,5.4vw,60px);font-weight:700;line-height:1.06;letter-spacing:-0.01em;color:#fff;margin:20px 0 24px;max-width:16ch">Moments from the field</h1>
+<x-import component-from-global-scope="SajjDesignSystem_a4cf4b.GoldRule" width="150px" hint-size="150px,2px"></x-import>
+<p style="font-size:clamp(16px,1.8vw,19px);line-height:1.62;color:rgba(255,255,255,0.84);margin:24px 0 0;max-width:520px">Treks, tours, adventures, campfire nights and everything in between. Drop your own photos onto any slot below.</p>
+</div>
+</section>
+
+<!-- Filters -->
+<section style="padding:clamp(40px,6vw,64px) clamp(18px,4vw,40px) 0">
+<div style="max-width:1200px;margin:0 auto">
+<div class="tk-filter">
+<sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+<button data-active="{{ cat.active }}" onClick="{{ cat.onClick }}">{{ cat.label }}</button>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- Gallery grid -->
+<section style="padding:clamp(28px,4vw,40px) clamp(18px,4vw,40px) clamp(56px,8vw,96px)">
+<div style="max-width:1200px;margin:0 auto">
+<div class="tk-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));grid-auto-rows:260px">
+<sc-for list="{{ filtered }}" as="item" hint-placeholder-count="12">
+<div class="tk-grid-item" onClick="{{ item.open }}" style="{{ item.span }}">
+<sc-if value="{{ item.isVideo }}" hint-placeholder-val="{{ false }}">
+<video src="{{ item.src }}" muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>
+<div class="tk-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><polygon points="6,3 20,12 6,21"></polygon></svg></div>
+</sc-if>
+<sc-if value="{{ item.isPhoto }}" hint-placeholder-val="{{ true }}">
+<img src="{{ item.src }}" alt="{{ item.alt }}" style="width:100%;height:100%;object-fit:cover;display:block">
+</sc-if>
+<div class="tk-overlay"><span>{{ item.cat }}</span></div>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+<div style="text-align:center;margin-top:clamp(36px,5vw,52px)">
+<button onClick="{{ loadMore }}" style="font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#001848;background:transparent;border:1px solid rgba(0,24,72,0.24);padding:16px 36px;border-radius:4px;cursor:pointer;transition:background 180ms cubic-bezier(0.16,1,0.3,1)" style-hover="background:rgba(0,24,72,0.06)">Load more</button>
+</div>
+</sc-if>
+</div>
+</section>
+
+<!-- Lightbox -->
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+<div class="tk-lightbox" onClick="{{ closeLightbox }}">
+<button class="tk-lb-close" onClick="{{ closeLightbox }}" aria-label="Close">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+</button>
+<button class="tk-lb-nav" style="left:16px" onClick="{{ prevItem }}" aria-label="Previous">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 4l-8 8 8 8"></path></svg>
+</button>
+<sc-if value="{{ lbIsVideo }}" hint-placeholder-val="{{ false }}">
+<video src="{{ lbSrc }}" controls autoplay style="max-width:92vw;max-height:88vh;border-radius:6px" onClick="{{ stopProp }}"></video>
+</sc-if>
+<sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
+<img src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:92vw;max-height:88vh;border-radius:6px;object-fit:contain" onClick="{{ stopProp }}">
+</sc-if>
+<button class="tk-lb-nav" style="right:16px" onClick="{{ nextItem }}" aria-label="Next">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4l8 8-8 8"></path></svg>
+</button>
+</div>
+</sc-if>
+
+<dc-import name="SiteFooter" hint-size="100%,0px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: "All", lightbox: -1, shown: 12 };
+
+  componentDidMount() {
+    const params = new URLSearchParams(window.location.search);
+    const f = params.get("filter");
+    if (f && this.CATS.includes(f)) {
+      this.setState({ filter: f });
+    }
+    this._onKey = (e) => {
+      if (this.state.lightbox < 0) return;
+      if (e.key === "Escape") this.setState({ lightbox: -1 });
+      if (e.key === "ArrowLeft") {
+        const len = this.getFiltered().length;
+        this.setState(s => ({ lightbox: (s.lightbox - 1 + len) % len }));
+      }
+      if (e.key === "ArrowRight") {
+        const len = this.getFiltered().length;
+        this.setState(s => ({ lightbox: (s.lightbox + 1) % len }));
+      }
+    };
+    document.addEventListener("keydown", this._onKey);
+  }
+
+  CATS = ["All", "Trekking", "Kilimanjaro Trekking", "Tours", "Adventures", "Badminton", "Videos"];
+
+  ITEMS = [
+    // Trekking
+    { src: "assets/gallery/trekking-mountain-peak.jpeg", cat: "Trekking", alt: "Mountain peak panoramic view", span: true },
+    { src: "assets/gallery/trekking-group-on-trail.jpeg", cat: "Trekking", alt: "Large group gathered on a trail" },
+    { src: "assets/gallery/trekking-large-group-open-trail.jpeg", cat: "Trekking", alt: "Large group on open trail" },
+    { src: "assets/gallery/trekking-mountain-landscape.jpeg", cat: "Trekking", alt: "Mountain landscape at golden hour", span: true },
+    { src: "assets/gallery/trekking-students-in-forest.jpeg", cat: "Trekking", alt: "Students on a forest trail" },
+    { src: "assets/gallery/trekking-through-bushes.jpeg", cat: "Trekking", alt: "Trekkers through dense foliage" },
+    { src: "assets/gallery/trekking-panoramic-viewpoint.jpeg", cat: "Trekking", alt: "Panoramic mountain viewpoint", span: true },
+    // Kilimanjaro Trekking
+    { src: "assets/gallery/kili-34-tent-stars.jpeg", cat: "Kilimanjaro Trekking", alt: "Tent under starry sky with snow peak", span: true },
+    { src: "assets/gallery/kili-30-kilimanjaro-view.jpeg", cat: "Kilimanjaro Trekking", alt: "Trekker approaching Kilimanjaro summit", span: true },
+    { src: "assets/gallery/kilimanjaro-snow-trek.jpeg", cat: "Kilimanjaro Trekking", alt: "Trekker on snowy Kilimanjaro slope" },
+    { src: "assets/gallery/kilimanjaro-national-park-gate.jpeg", cat: "Kilimanjaro Trekking", alt: "Kilimanjaro National Park entrance" },
+    { src: "assets/gallery/kili-20-snow-peak.jpeg", cat: "Kilimanjaro Trekking", alt: "Snow-capped peak through clouds" },
+    { src: "assets/gallery/kili-21-snow-range.jpeg", cat: "Kilimanjaro Trekking", alt: "Snow mountain range panorama" },
+    { src: "assets/gallery/kili-06-arid-mountains.jpeg", cat: "Kilimanjaro Trekking", alt: "Arid high-altitude mountain landscape", span: true },
+    { src: "assets/gallery/kili-10-base-camp-tents.jpeg", cat: "Kilimanjaro Trekking", alt: "Colourful tents at base camp", span: true },
+    { src: "assets/gallery/kili-09-trekker-path.jpeg", cat: "Kilimanjaro Trekking", alt: "Trekker on path towards mountains" },
+    { src: "assets/gallery/kili-08-snow-valley.jpeg", cat: "Kilimanjaro Trekking", alt: "Snow-capped valley with trail" },
+    { src: "assets/gallery/kili-12-alpine-lake.jpeg", cat: "Kilimanjaro Trekking", alt: "Alpine lake surrounded by mountains" },
+    { src: "assets/gallery/kili-07-valley-trail.jpeg", cat: "Kilimanjaro Trekking", alt: "Valley trail at dusk" },
+    { src: "assets/gallery/kili-04-mountain-silhouette.jpeg", cat: "Kilimanjaro Trekking", alt: "Mountain silhouette at twilight" },
+    { src: "assets/gallery/kili-05-base-camp-sunset.jpeg", cat: "Kilimanjaro Trekking", alt: "Base camp at sunset with golden light" },
+    { src: "assets/gallery/kili-31-wispy-clouds-peaks.jpeg", cat: "Kilimanjaro Trekking", alt: "Wispy clouds over snow peaks" },
+    { src: "assets/gallery/kili-32-close-peaks.jpeg", cat: "Kilimanjaro Trekking", alt: "Close-up of snow-capped peaks" },
+    { src: "assets/gallery/kili-19-snow-camp-crew.jpeg", cat: "Kilimanjaro Trekking", alt: "Crew working at snow camp" },
+    { src: "assets/gallery/kili-23-ice-water.jpeg", cat: "Kilimanjaro Trekking", alt: "Collecting water from frozen lake" },
+    { src: "assets/gallery/kili-26-rocky-camp.jpeg", cat: "Kilimanjaro Trekking", alt: "Tents pitched on rocky terrain" },
+    { src: "assets/gallery/kili-28-snow-tents.jpeg", cat: "Kilimanjaro Trekking", alt: "Colourful tents on snowy mountainside" },
+    { src: "assets/gallery/kili-22-forest-campsite.jpeg", cat: "Kilimanjaro Trekking", alt: "Forest campsite in the mist" },
+    { src: "assets/gallery/kili-29-twisted-trees.jpeg", cat: "Kilimanjaro Trekking", alt: "Twisted trees on mountain trail" },
+    { src: "assets/gallery/kili-27-flower-valley.jpeg", cat: "Kilimanjaro Trekking", alt: "Valley of flowers in bloom" },
+    { src: "assets/gallery/kili-14-village-peaks.jpeg", cat: "Kilimanjaro Trekking", alt: "Mountain village with dramatic peaks" },
+    { src: "assets/gallery/kili-11-roadside-mountain.jpeg", cat: "Kilimanjaro Trekking", alt: "Roadside view of arid mountain" },
+    { src: "assets/gallery/kili-24-pano-peaks.jpeg", cat: "Kilimanjaro Trekking", alt: "Panoramic snow peaks" },
+    { src: "assets/gallery/kili-01-ship-duo.jpeg", cat: "Kilimanjaro Trekking", alt: "On a ship deck with city skyline" },
+    { src: "assets/gallery/kili-03-ship-solo.jpeg", cat: "Kilimanjaro Trekking", alt: "On ship deck with skyline" },
+    { src: "assets/gallery/kili-02-ship-wheel.jpeg", cat: "Kilimanjaro Trekking", alt: "At the ship wheel" },
+    { src: "assets/gallery/kili-15-gear-lodge.jpeg", cat: "Kilimanjaro Trekking", alt: "Gear packed at the mountain lodge" },
+    { src: "assets/gallery/kili-13-lodge-rest.jpeg", cat: "Kilimanjaro Trekking", alt: "Resting at the mountain lodge" },
+    { src: "assets/gallery/kili-25-kayak.jpeg", cat: "Kilimanjaro Trekking", alt: "Kayaking on green water" },
+    { src: "assets/gallery/kili-17-campfire-night.jpeg", cat: "Kilimanjaro Trekking", alt: "Sitting by the campfire at night" },
+    { src: "assets/gallery/kili-18-lotus-pond.jpeg", cat: "Kilimanjaro Trekking", alt: "Lotus pond in green garden" },
+    { src: "assets/gallery/kili-16-coleus-plant.jpeg", cat: "Kilimanjaro Trekking", alt: "Coleus plant close-up" },
+    { src: "assets/gallery/kili-33-rainbow-fields.jpeg", cat: "Kilimanjaro Trekking", alt: "Rainbow over green fields" },
+    { src: "assets/gallery/kili-35-kili-summit-approach.jpeg", cat: "Kilimanjaro Trekking", alt: "Approaching Kilimanjaro summit" },
+    { src: "assets/gallery/kili-36-aconcagua-summit.jpeg", cat: "Kilimanjaro Trekking", alt: "Aconcagua high-altitude terrain" },
+    // Adventures
+    { src: "assets/gallery/adv-01.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-02.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-03.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-04.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-05.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-06.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-07.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-08.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-09.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-10.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-11.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-12.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-13.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-14.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-15.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-16.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-17.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-18.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-19.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-20.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-21.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-22.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-23.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-24.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-25.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-26.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-27.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-28.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-29.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-30.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-31.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-32.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-33.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-34.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-35.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-36.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-37.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-38.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-39.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-40.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-41.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-42.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-43.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-44.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-45.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-46.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-47.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-48.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-49.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-50.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-51.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-52.jpeg", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-53.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-54.jpeg", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-55.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-56.jfif", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-57.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-58.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-59.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-60.jfif", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-61.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-62.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-63.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-64.jfif", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-65.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-66.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-67.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-68.jfif", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-69.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-70.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-71.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-72.jfif", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-73.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-74.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-75.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-76.jfif", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-77.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-78.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-79.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-80.jfif", cat: "Adventures", alt: "Adventure activity", span: true },
+    { src: "assets/gallery/adv-81.jfif", cat: "Adventures", alt: "Adventure activity" },
+    { src: "assets/gallery/adv-82.jfif", cat: "Adventures", alt: "Adventure activity" },
+    // Tours
+    { src: "assets/gallery/tours-01-sandbar-aerial.jfif", cat: "Tours", alt: "Aerial view of sandbar coastline", span: true },
+    { src: "assets/gallery/tours-10-osaka-castle.jfif", cat: "Tours", alt: "Group at Osaka Castle", span: true },
+    { src: "assets/gallery/tours-08-tigers-nest.jfif", cat: "Tours", alt: "At Tiger's Nest monastery, Bhutan" },
+    { src: "assets/gallery/tours-12-bhutan-dzong.jfif", cat: "Tours", alt: "In traditional dress at Bhutan dzong" },
+    { src: "assets/gallery/tours-03-bridge-river.jfif", cat: "Tours", alt: "On a bridge over blue river" },
+    { src: "assets/gallery/tours-19-himeji-castle.jfif", cat: "Tours", alt: "Group at Himeji Castle", span: true },
+    { src: "assets/gallery/tours-02-group-viewpoint.jfif", cat: "Tours", alt: "Tour group at mountain viewpoint" },
+    { src: "assets/gallery/tours-06-boat-group.jfif", cat: "Tours", alt: "Group on a boat ride" },
+    { src: "assets/gallery/tours-17-osaka-night.jfif", cat: "Tours", alt: "Group in Osaka at night" },
+    { src: "assets/gallery/tours-13-tea-ceremony.jfif", cat: "Tours", alt: "Japanese tea ceremony experience" },
+    { src: "assets/gallery/tours-24-station-group.jfif", cat: "Tours", alt: "Group at Amanohashidate station" },
+    { src: "assets/gallery/tours-25-restaurant.jfif", cat: "Tours", alt: "Group dining at restaurant" },
+    { src: "assets/gallery/tours-05-green-meadow-peaks.jfif", cat: "Tours", alt: "Green meadow with Himalayan peaks", span: true },
+    { src: "assets/gallery/tours-09-mountain-layers.jfif", cat: "Tours", alt: "Layered mountain ranges" },
+    { src: "assets/gallery/tours-21-meadow-camp.jfif", cat: "Tours", alt: "Mountain meadow campsite" },
+    { src: "assets/gallery/tours-20-forest-peaks.jfif", cat: "Tours", alt: "Forest with snow peaks behind" },
+    { src: "assets/gallery/tours-23-panoramic-valley.jfif", cat: "Tours", alt: "Panoramic mountain valley view" },
+    { src: "assets/gallery/tours-15-fort-ruins.jfif", cat: "Tours", alt: "Ancient fort ruins in greenery" },
+    { src: "assets/gallery/tours-14-campsite-rock.jfif", cat: "Tours", alt: "Campsite with rock monolith" },
+    { src: "assets/gallery/tours-11-temple.jfif", cat: "Tours", alt: "At mountain temple" },
+    { src: "assets/gallery/tours-07-rocky-trail.jfif", cat: "Tours", alt: "Trekkers on rocky trail" },
+    { src: "assets/gallery/tours-18-mountain-portrait.jfif", cat: "Tours", alt: "Portrait on mountain meadow" },
+    { src: "assets/gallery/tours-22-hilltop-portrait.jfif", cat: "Tours", alt: "Portrait on hilltop" },
+    { src: "assets/gallery/tours-16-jungle-wheel.jfif", cat: "Tours", alt: "Jungle camp activity" },
+    { src: "assets/gallery/tours-04-playground-equipment.jfif", cat: "Tours", alt: "Adventure playground equipment" },
+    // Badminton
+    { src: "assets/gallery/badminton-01.jpeg", cat: "Badminton", alt: "Badminton practice at Trikuta Smash Arena", span: true },
+    { src: "assets/gallery/badminton-02.jpeg", cat: "Badminton", alt: "Coaching session at Trikuta Smash Arena" },
+    // Videos
+    { src: "assets/gallery/video-01.mp4", cat: "Adventures", alt: "Adventure video", type: "video", span: true },
+    { src: "assets/gallery/video-02.mp4", cat: "Adventures", alt: "Adventure video", type: "video" },
+    { src: "assets/gallery/video-03.mp4", cat: "Adventures", alt: "Adventure video", type: "video" },
+    { src: "assets/gallery/video-04.mp4", cat: "Adventures", alt: "Adventure video", type: "video", span: true },
+    { src: "assets/gallery/video-05.mp4", cat: "Adventures", alt: "Adventure video", type: "video" },
+    { src: "assets/gallery/video-06.mp4", cat: "Adventures", alt: "Adventure video", type: "video" },
+  ];
+
+  getFiltered() {
+    const f = this.state.filter;
+    if (f === "All") return this.ITEMS;
+    if (f === "Videos") return this.ITEMS.filter(i => i.type === "video");
+    return this.ITEMS.filter(i => i.cat === f);
+  }
+
+  renderVals() {
+    const filtered = this.getFiltered();
+    const shown = filtered.slice(0, this.state.shown);
+    const lbIdx = this.state.lightbox;
+    const lbItem = lbIdx >= 0 ? filtered[lbIdx] : null;
+
+    return {
+      categories: this.CATS.map(c => ({
+        label: c,
+        active: c === this.state.filter ? "true" : "false",
+        onClick: (e) => { e.stopPropagation(); this.setState({ filter: c, shown: 12 }); }
+      })),
+      filtered: shown.map((item, i) => ({
+        src: item.src,
+        alt: item.alt || "",
+        cat: item.cat,
+        isVideo: item.type === "video",
+        isPhoto: item.type !== "video",
+        span: item.span && window.innerWidth >= 700 ? "grid-column:span 2" : "",
+        open: () => this.setState({ lightbox: i })
+      })),
+      hasMore: shown.length < filtered.length,
+      loadMore: () => this.setState(s => ({ shown: s.shown + 12 })),
+      lightboxOpen: lbIdx >= 0,
+      lbSrc: lbItem ? lbItem.src : "",
+      lbAlt: lbItem ? (lbItem.alt || "") : "",
+      lbIsVideo: lbItem ? lbItem.type === "video" : false,
+      lbIsPhoto: lbItem ? lbItem.type !== "video" : true,
+      closeLightbox: () => this.setState({ lightbox: -1 }),
+      stopProp: (e) => e.stopPropagation(),
+      prevItem: (e) => {
+        e.stopPropagation();
+        const len = this.getFiltered().length;
+        this.setState(s => ({ lightbox: (s.lightbox - 1 + len) % len }));
+      },
+      nextItem: (e) => {
+        e.stopPropagation();
+        const len = this.getFiltered().length;
+        this.setState(s => ({ lightbox: (s.lightbox + 1) % len }));
+      }
+    };
+  }
+
+  componentWillUnmount() {
+    if (this._onKey) document.removeEventListener("keydown", this._onKey);
+  }
+}
+</script>
+</body>
+</html>
