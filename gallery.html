@@ -14,7 +14,7 @@
 <script src="./image-slot.js"></script>
 <style>@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:'Nohemi';src:url('assets/fonts/Nohemi-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}:root:root{--font-display:'Nohemi',Helvetica,Arial,sans-serif}body{margin:0;background:#fff}h1,h2{text-transform:none !important;letter-spacing:-0.005em}a{color:#001848;text-decoration:none;border-bottom:0}a:hover{color:#c68a1a}
 .tk-filter{display:flex;gap:8px;flex-wrap:wrap}
-.tk-filter button{font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:11px 22px;border-radius:4px;border:1px solid rgba(0,24,72,0.18);background:transparent;color:#001848;cursor:pointer;transition:background 180ms cubic-bezier(0.16,1,0.3,1),color 180ms cubic-bezier(0.16,1,0.3,1),border-color 180ms cubic-bezier(0.16,1,0.3,1)}
+.tk-filter button{white-space:nowrap;font-family:'Nohemi',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:11px 22px;border-radius:4px;border:1px solid rgba(0,24,72,0.18);background:transparent;color:#001848;cursor:pointer;transition:background 180ms cubic-bezier(0.16,1,0.3,1),color 180ms cubic-bezier(0.16,1,0.3,1),border-color 180ms cubic-bezier(0.16,1,0.3,1)}
 .tk-filter button:hover{background:rgba(0,24,72,0.06)}
 .tk-filter button[data-active="true"]{background:#001848;color:#fff;border-color:#001848}
 .tk-grid{display:grid;gap:12px}
@@ -67,7 +67,7 @@
 <sc-for list="{{ filtered }}" as="item" hint-placeholder-count="12">
 <div class="tk-grid-item" onClick="{{ item.open }}" style="{{ item.span }}">
 <sc-if value="{{ item.isVideo }}" hint-placeholder-val="{{ false }}">
-<video src="{{ item.src }}" muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>
+<video src="{{ item.src }}" poster="{{ item.poster }}" muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>
 <div class="tk-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><polygon points="6,3 20,12 6,21"></polygon></svg></div>
 </sc-if>
 <sc-if value="{{ item.isPhoto }}" hint-placeholder-val="{{ true }}">
@@ -95,7 +95,7 @@
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 4l-8 8 8 8"></path></svg>
 </button>
 <sc-if value="{{ lbIsVideo }}" hint-placeholder-val="{{ false }}">
-<video src="{{ lbSrc }}" controls autoplay style="max-width:92vw;max-height:88vh;border-radius:6px" onClick="{{ stopProp }}"></video>
+<video src="{{ lbSrc }}" poster="{{ lbPoster }}" controls autoplay style="max-width:92vw;max-height:88vh;border-radius:6px" onClick="{{ stopProp }}"></video>
 </sc-if>
 <sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
 <img src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:92vw;max-height:88vh;border-radius:6px;object-fit:contain" onClick="{{ stopProp }}">
@@ -134,7 +134,7 @@ class Component extends DCLogic {
     document.addEventListener("keydown", this._onKey);
   }
 
-  CATS = ["All", "Trekking", "Kilimanjaro Trekking", "Tours", "Adventures", "Badminton", "Videos"];
+  CATS = ["All", "Trekking", "Kilimanjaro Trekking", "Tours", "Adventures", "Badminton", "Videos", "Kondaveedu Adventures"];
 
   ITEMS = [
     // Trekking
@@ -297,6 +297,7 @@ class Component extends DCLogic {
     { src: "assets/gallery/badminton-01.jpeg", cat: "Badminton", alt: "Badminton practice at Trikuta Smash Arena", span: true },
     { src: "assets/gallery/badminton-02.jpeg", cat: "Badminton", alt: "Coaching session at Trikuta Smash Arena" },
     // Videos
+    { src: "assets/gallery/kondaveedu-adventures-01.mp4", cat: "Kondaveedu Adventures", alt: "Kondaveedu Adventures video", poster: "assets/gallery/kondaveedu-adventures-poster.png", type: "video", span: true },
     { src: "assets/gallery/video-01.mp4", cat: "Adventures", alt: "Adventure video", type: "video", span: true },
     { src: "assets/gallery/video-02.mp4", cat: "Adventures", alt: "Adventure video", type: "video" },
     { src: "assets/gallery/video-03.mp4", cat: "Adventures", alt: "Adventure video", type: "video" },
@@ -328,6 +329,7 @@ class Component extends DCLogic {
         src: item.src,
         alt: item.alt || "",
         cat: item.cat,
+        poster: item.poster || "",
         isVideo: item.type === "video",
         isPhoto: item.type !== "video",
         span: item.span && window.innerWidth >= 700 ? "grid-column:span 2" : "",
@@ -338,6 +340,7 @@ class Component extends DCLogic {
       lightboxOpen: lbIdx >= 0,
       lbSrc: lbItem ? lbItem.src : "",
       lbAlt: lbItem ? (lbItem.alt || "") : "",
+      lbPoster: lbItem ? (lbItem.poster || "") : "",
       lbIsVideo: lbItem ? lbItem.type === "video" : false,
       lbIsPhoto: lbItem ? lbItem.type !== "video" : true,
       closeLightbox: () => this.setState({ lightbox: -1 }),
